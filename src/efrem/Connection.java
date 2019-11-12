@@ -1,5 +1,8 @@
 package efrem;
 
+/**
+ * Connections has north, south, east and west variable
+ */
 public class Connection {
     private Coordinate north;
     private Coordinate south;
@@ -49,6 +52,10 @@ public class Connection {
         this.west = west;
     }
 
+    /**
+     *
+     * @return this will return the directions in string format as north,south,east,west
+     */
     @Override
     public String toString() {
         return String.format("N=%s, S=%s, E=%s, W=%s", north,south,east,west);

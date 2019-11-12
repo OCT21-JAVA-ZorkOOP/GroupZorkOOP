@@ -1,5 +1,8 @@
 package efrem;
 
+/**
+ * will have the x and y value, i.e the coordinates of the arraylist room
+ */
 public class Coordinate implements Comparable <Coordinate>{
     private int x;
     private int y;
@@ -28,6 +31,11 @@ public class Coordinate implements Comparable <Coordinate>{
         this.y = y;
     }
 
+    /**
+     *
+     * @param otherXY holder to compare
+     * @return 1 means greater, -1 means less, 0 if correct
+     */
     @Override
     public int compareTo(Coordinate otherXY) {
         if (y < otherXY.y) return 1;

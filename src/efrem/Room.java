@@ -27,5 +27,13 @@ public class Room {
     public void setConnection(Connection connection) {
         this.connection = connection;
     }
+
+    @Override
+    public String toString() {
+        return
+                "  coordinate =" + coordinate + "\n"+
+                "  connection =" + connection + "\n"
+                ;
+    }
 }
 

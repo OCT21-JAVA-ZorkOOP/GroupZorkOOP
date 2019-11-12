@@ -36,4 +36,38 @@ public class Coordinate implements Comparable <Coordinate>{
         if (x > otherXY.x) return -1;
         return 0;
     }
+
+
+    public Coordinate getNorth() {
+        Coordinate xy = new Coordinate();
+        xy.x = this.x;
+        xy.y = this.y-1;
+        return xy;
+    }
+
+    public Coordinate getSouth() {
+        Coordinate xy = new Coordinate();
+        xy.x = this.x;
+        xy.y = this.y+1;
+        return xy;
+    }
+
+    public Coordinate getEast() {
+        Coordinate xy = new Coordinate();
+        xy.x = this.x+1;
+        xy.y = this.y;
+        return xy;
+    }
+
+    public Coordinate getWest() {
+        Coordinate xy = new Coordinate();
+        xy.x = this.x-1;
+        xy.y = this.y;
+        return xy;
+    }
+
+    @Override
+    public String toString() {
+        return String.format("(%d,%d)",x,y);
+    }
 }

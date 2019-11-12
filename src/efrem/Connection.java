@@ -49,4 +49,8 @@ public class Connection {
         this.west = west;
     }
 
+    @Override
+    public String toString() {
+        return String.format("N=%s, S=%s, E=%s, W=%s", north,south,east,west);
+    }
 }

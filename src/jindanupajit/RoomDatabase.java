@@ -8,8 +8,8 @@ import java.util.*;
 
 public class RoomDatabase extends HashMap<Integer, Room> {
 
-    private int width = 0;
-    private int height = 0;
+    private Integer width = 0;
+    private Integer height = 0;
 
     public RoomDatabase(int initialCapacity, float loadFactor) {
         super(initialCapacity, loadFactor);
@@ -61,6 +61,10 @@ public class RoomDatabase extends HashMap<Integer, Room> {
 
     public Room put(Integer width, Integer x, Integer y, Room value) {
         return super.put(getKey(width,x,y), value);
+    }
+
+    public boolean hasRoomAt(Coordinate xy) {
+        return containsKey(xy.getX(), xy.getY());
     }
 
   public boolean containsKey(int x, int y) {

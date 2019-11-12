@@ -1,6 +1,6 @@
 package efrem;
 
-public class Coordinate {
+public class Coordinate implements Comparable <Coordinate>{
     private int x;
     private int y;
 
@@ -26,5 +26,14 @@ public class Coordinate {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    @Override
+    public int compareTo(Coordinate otherXY) {
+        if (y < otherXY.y) return 1;
+        if (x < otherXY.x) return 1;
+        if (y > otherXY.y) return -1;
+        if (x > otherXY.x) return -1;
+        return 0;
     }
 }

@@ -37,7 +37,12 @@ public class Main {
         }
     }
 
-
+    /**
+     * Print out the menu and wait for user input
+     * @param player Player object
+     * @return Coordinate of the next room
+     * @see Coordinate
+     */
     public static Coordinate menu(Player player) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("\nSelect direction you want to move to ");
@@ -47,16 +52,16 @@ public class Main {
         xy.setX(player.getCurrentRoom().getCoordinate().getX());
         xy.setY(player.getCurrentRoom().getCoordinate().getY());
         switch(scanner.nextLine()) {
-            case "8": // N
+            case "8": // North
                 xy.setY(xy.getY()-1);
                 return xy;
-            case "2": // S
+            case "2": // South
                 xy.setY(xy.getY()+1);
                 return xy;
-            case "6": // E
+            case "6": // East
                 xy.setX(xy.getX()+1);
                 return xy;
-            case "4": // W
+            case "4": // West
                 xy.setX(xy.getX()-1);
                 return xy;
             case "0":
@@ -70,6 +75,11 @@ public class Main {
         return xy;
     }
 
+    /**
+     * Print room in roomDatabase using toString() method
+     * @param roomDatabase to print
+     *
+     */
     public static void printRoom (RoomDatabase roomDatabase) {
 
         for (Integer key : roomDatabase.keySet()) {
@@ -81,17 +91,6 @@ public class Main {
             System.out.printf("(%d,%d) #%d key=%d\n", xy.getX(), xy.getY(), roomDatabase.getKey(xy.getX(), xy.getY()), key);
 
             System.out.printf("%s\n", room);
-//            if (c.getNorth() != null)
-//                System.out.printf("  * N = (%d,%d) #%d\n", c.getNorth().getX(), c.getNorth().getY(), roomDatabase.getKey(c.getNorth().getX(), c.getNorth().getY()));
-//
-//            if (c.getSouth() != null)
-//                System.out.printf("  * S = (%d,%d) #%d\n", c.getSouth().getX(), c.getSouth().getY(), roomDatabase.getKey(c.getSouth().getX(), c.getSouth().getY()));
-//
-//            if (c.getEast() != null)
-//                System.out.printf("  * E = (%d,%d) #%d\n", c.getEast().getX(), c.getEast().getY(), roomDatabase.getKey(c.getEast().getX(), c.getEast().getY()));
-//
-//            if (c.getWest() != null)
-//                System.out.printf("  * W = (%d,%d) #%d\n", c.getWest().getX(), c.getWest().getY(), roomDatabase.getKey(c.getWest().getX(), c.getWest().getY()));
 
         }
     }

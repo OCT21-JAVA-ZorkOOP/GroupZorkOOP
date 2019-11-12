@@ -22,52 +22,119 @@ public class RoomDatabase extends HashMap<Integer, Room> {
     public RoomDatabase() {
     }
 
-
-
     public RoomDatabase(Map<? extends Integer, ? extends Room> m) {
         super(m);
     }
 
+    /**
+     * Constructor (overload)
+     * @param width the grid width
+     * @param height the grid height
+     */
     public RoomDatabase(int width, int height) {
         this.width = width;
         this.height = height;
     }
 
+    /**
+     * Convert x,y to HashMap key
+     * @param width the grid width of game
+     * @param x coordinate x start from 0
+     * @param y coordinate y start from 0
+     * @return (y*width)+x
+     */
     public static Integer getKey(Integer width, Integer x, Integer y) {
         return (y*width)+x;
     }
 
+    /**
+     * Convert HashMap key back to Coordinate
+     * @param width the grid width of game
+     * @param key key you want to convert
+     * @return Coordinate x,y
+     * @see Coordinate
+     */
     public static  Coordinate getCoordinate(Integer width, Integer key) {
         Integer y = key/width;
         Integer x = key-(y*width);
-        //System.out.printf("w=%d k=%d ->  (%d,%d)", width, key, x, y);
         return new Coordinate(x,y);
     }
 
+    /**
+     * Get Room by coordinate
+     * @param x
+     * @param y
+     * @return Room associated with x,y
+     * @see Room
+     */
     public Room get(int x, int y) {
         return get(width, x, y);
     }
 
+    /**
+     * Get Room by coordinate, and grid width
+     * @param width
+     * @param x
+     * @param y
+     * @return Room associated with x,y
+     * @see Room
+     */
     public Room get(Integer width, Integer x, Integer y) {
         return super.get(getKey(width,x,y));
     }
 
+    /**
+     * Add a room to database, and automatically generate key for HashMap<Integer, Room>
+     * @param room the room that you want to add
+     * @return The room that you just add
+     * @see HashMap
+     *
+     */
     public Room add(Room room) {
         return this.put(getKey(room), room);
     }
 
-    public Room put(int x, int y, Room value) {
-        return put(width, x, y, value);
+    /**
+     * Put Room that associated with x,y
+     * @param x
+     * @param y
+     * @param room you want to put
+     * @return Room that you just put
+     * @see Room
+     */
+    public Room put(int x, int y, Room room) {
+        return put(width, x, y, room);
     }
 
-    public Room put(Integer width, Integer x, Integer y, Room value) {
-        return super.put(getKey(width,x,y), value);
+    /**
+     * Put Room that associated with x,y
+     * @param width
+     * @param x
+     * @param y
+     * @param room you want to put
+     * @return Room that you just put
+     * @see Room
+     */
+    public Room put(Integer width, Integer x, Integer y, Room room) {
+        return super.put(getKey(width,x,y), room);
     }
 
+    /**
+     * Check if that coordinate has a Room associated with
+     * @param xy
+     * @return true/false according to the existing of the Room
+     * @see Room
+     */
     public boolean hasRoomAt(Coordinate xy) {
         return containsKey(xy.getX(), xy.getY());
     }
 
+    /**
+     * Overload containsKey with x,y
+     * @param x
+     * @param y
+     * @return
+     */
   public boolean containsKey(int x, int y) {
         return containsKey(width, x,y);
   }

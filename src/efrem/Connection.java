@@ -48,4 +48,5 @@ public class Connection {
     public void setWest(Coordinate west) {
         this.west = west;
     }
+
 }

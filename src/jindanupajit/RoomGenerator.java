@@ -123,35 +123,30 @@ public class RoomGenerator {
                     Coordinate xy =  roomDatabase.getCoordinate(key);
                     room.setConnection(new Connection());
 
+                    System.out.printf(" * Linking #%d %s N %s, S %s, E %s, W %s\n", key, xy, xy.getNorth(), xy.getSouth(), xy.getEast(), xy.getWest());
+
                     if (xy.getY() > 0) { // NORTH
-                        if (roomDatabase.containsKey(xy.getX(),xy.getY()-1)) {
-                            room.getConnection().setNorth(new Coordinate());
-                            room.getConnection().getNorth().setX(xy.getX());
-                            room.getConnection().getNorth().setX(xy.getY()-1);
+                        if (roomDatabase.hasRoomAt(xy.getNorth())) {
+                            room.getConnection().setNorth(xy.getNorth());
                         }
                     }
 
                     if (xy.getY() < (height-1)) { // SOUTH
-                        if (roomDatabase.containsKey(xy.getX(),xy.getY()+1)) {
-                            room.getConnection().setSouth(new Coordinate());
-                            room.getConnection().getSouth().setX(xy.getX());
-                            room.getConnection().getSouth().setX(xy.getY()+1);
+                        if (roomDatabase.hasRoomAt(xy.getSouth())){
+                            room.getConnection().setSouth(xy.getSouth());
                         }
                     }
 
                     if (xy.getX() < (width-1)) { // EAST
-                        if (roomDatabase.containsKey(xy.getX()+1,xy.getY())) {
-                            room.getConnection().setEast(new Coordinate());
-                            room.getConnection().getEast().setX(xy.getX()+1);
-                            room.getConnection().getEast().setX(xy.getY());
+                        if (roomDatabase.hasRoomAt(xy.getEast())) {
+                            room.getConnection().setEast(xy.getEast());
                         }
                     }
 
                     if (xy.getX() > 0) { // WEST
-                        if (roomDatabase.containsKey(xy.getX()-1,xy.getY())) {
-                            room.getConnection().setWest(new Coordinate());
-                            room.getConnection().getWest().setX(xy.getX()-1);
-                            room.getConnection().getWest().setX(xy.getY());
+                        if (roomDatabase.hasRoomAt(xy.getWest())) {
+                            room.getConnection().setWest(xy.getWest());
+
                         }
                     }
                 }

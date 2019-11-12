@@ -39,7 +39,8 @@ public class RoomDatabase extends HashMap<Integer, Room> {
 
     public static  Coordinate getCoordinate(Integer width, Integer key) {
         Integer y = key/width;
-        Integer x = key-y;
+        Integer x = key-(y*width);
+        //System.out.printf("w=%d k=%d ->  (%d,%d)", width, key, x, y);
         return new Coordinate(x,y);
     }
 
@@ -80,6 +81,7 @@ public class RoomDatabase extends HashMap<Integer, Room> {
     }
 
     public Integer getKey(int x, int y) {
+
         return getKey(width,x,y);
     }
 

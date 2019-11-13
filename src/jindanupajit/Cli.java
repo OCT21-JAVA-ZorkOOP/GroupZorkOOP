@@ -29,7 +29,7 @@ public class Cli implements Runnable {
      */
     public Cli() {
 
-        roomGenerator = new RoomGenerator(new RoomDatabase(10, 10), 50);
+        roomGenerator = new RoomGenerator(new RoomDatabase(4, 4), 10);
         roomGenerator.generate();
         roomDatabase = roomGenerator.getRoomDatabase();
         player = new Player(roomDatabase.getRandomRoom(), roomDatabase);

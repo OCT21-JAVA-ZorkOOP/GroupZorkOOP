@@ -36,6 +36,20 @@ public class RoomDatabase extends HashMap<Integer, Room> {
         this.height = height;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Size (width x height) = (").append(width).append(" x ").append(height).append(")\n");
+        int i = 0;
+        this.forEach( (k,r) -> {
+            sb.append("key = ").append(k).append("\n")
+                    .append(r);
+        } );
+        sb.append("\nTotal ").append(this.size()).append(" room(s).");
+
+        return sb.toString();
+    }
+
     /**
      * Convert x,y to HashMap key
      * @param width the grid width of game
@@ -60,6 +74,9 @@ public class RoomDatabase extends HashMap<Integer, Room> {
         return new Coordinate(x,y);
     }
 
+    public Room get(Coordinate xy) {
+        return get(xy.getX(), xy.getY());
+    }
     /**
      * Get Room by coordinate
      * @param x
@@ -129,6 +146,9 @@ public class RoomDatabase extends HashMap<Integer, Room> {
         return containsKey(xy.getX(), xy.getY());
     }
 
+    public boolean containsKey(Coordinate xy) {
+        return containsKey(xy.getX(), xy.getY());
+    }
     /**
      * Overload containsKey with x,y
      * @param x

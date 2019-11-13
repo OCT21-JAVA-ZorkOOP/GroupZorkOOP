@@ -24,6 +24,14 @@ public class Player {
         this.currentRoom = currentRoom;
     }
 
+    public int getRoomKey() {
+        return roomDatabase.getKey(getCurrentRoom());
+    }
+
+    public String where() {
+        return String.format("%d",getRoomKey()+1);
+    }
+
     public RoomDatabase getRoomDatabase() {
         return roomDatabase;
     }
@@ -35,35 +43,23 @@ public class Player {
 
 
     public boolean canMoveTo(Coordinate xy) {
-        if (xy.getX() < 0) return false;
-        if (xy.getY() < 0) return false;
-        if (!roomDatabase.containsKey(xy.getX(), xy.getY()))
+
+        if (xy == null) // null coordinate
             return false;
 
-        if ((currentRoom.getConnection().getNorth() != null) &&
-            (currentRoom.getConnection().getNorth().compareTo(xy) == 0)) {
-               currentRoom = roomDatabase.get(xy.getX(), xy.getY());
-               return true;
-        }
+        else if (xy.getX() < 0)  // out of bound
+            return false;
 
-        if ((currentRoom.getConnection().getSouth() != null) &&
-                (currentRoom.getConnection().getSouth().compareTo(xy) == 0)) {
-            currentRoom = roomDatabase.get(xy.getX(), xy.getY());
+        else if (xy.getY() < 0) // out of bound
+            return false;
+
+        else if (!roomDatabase.containsKey(xy)) // not in database  key
+            return false;
+
+        else if (roomDatabase.get(xy) == null) // database value is null
+            return false;
+
+        else
             return true;
-        }
-
-        if ((currentRoom.getConnection().getEast() != null) &&
-                (currentRoom.getConnection().getEast().compareTo(xy) == 0)) {
-            currentRoom = roomDatabase.get(xy.getX(), xy.getY());
-            return true;
-        }
-
-        if ((currentRoom.getConnection().getWest() != null) &&
-                (currentRoom.getConnection().getWest().compareTo(xy) == 0)) {
-            currentRoom = roomDatabase.get(xy.getX(), xy.getY());
-            return true;
-        }
-
-        return false;
     }
 }
